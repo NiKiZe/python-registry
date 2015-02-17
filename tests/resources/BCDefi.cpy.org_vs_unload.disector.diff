@@ -1,0 +1,640 @@
+--- 6c90b1.BCDefi.cpy.disector.txt	2015-02-17 06:32:13.001206297 +0100
++++ 1e03cd.BCDefi.cpy.unload.disector.txt	2015-02-17 06:32:12.733206298 +0100
+@@ -1,7 +1,7 @@
+ 00000000  72 65 67 66                                       |regf|              0x66676572  regf file magic identifier
+-00000004              62 01 00 00                               |b...|          Sequence 1 : 354
+-00000008                           62 01 00 00                      |b...|      Sequence 2 : 354
+-0000000c  8d fe c6 5f 44 9f cc 01                           |..._D...|          0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
++00000004              63 01 00 00                               |c...|          Sequence 1 : 355
++00000008                           63 01 00 00                      |c...|      Sequence 2 : 355
++0000000c  a5 aa 9f 5f 70 4a d0 01                           |..._pJ..|          0x01d04a705f9faaa5 Timestamp 2015-02-17 05:12:49.483637
+ 00000014              01 00 00 00                               |....|          Major (1): 1
+ 00000018                           03 00 00 00                      |....|      Minor (3): 3
+ 0000001c                                       00 00 00 00              |....|  Type? (0): 0
+@@ -9,28 +9,32 @@
+ 00000024              20 00 00 00                               | ...|          0x00000020  Pointer to first key record
+ 00000028                           00 60 00 00                      |.`..|      0x00006000  Pointer to start of last hbin in file 24576
+ 0000002c                                       01 00 00 00              |....|  Unknown ? Always 1: 1
+-00000030  5c 00 62 00 69 00 6e 00  5c 00 6d 00 65 00 64 00  |\.b.i.n.\.m.e.d.|  Hivename  \bin\media\client\efi\amd64\BCD
+-00000040  69 00 61 00 5c 00 63 00  6c 00 69 00 65 00 6e 00  |i.a.\.c.l.i.e.n.|
+-00000050  74 00 5c 00 65 00 66 00  69 00 5c 00 61 00 6d 00  |t.\.e.f.i.\.a.m.|
+-00000060  64 00 36 00 34 00 5c 00  42 00 43 00 44 00 00 00  |d.6.4.\.B.C.D...|
+-00000070  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|  Log of last update or just stack?, ex: GUID seen : 396
++00000030  76 00 69 00 63 00 65 00  5c 00 48 00 61 00 72 00  |v.i.c.e.\.H.a.r.|  Hivename  vice\HarddiskVolume4\BCDefi.cpy
++00000040  64 00 64 00 69 00 73 00  6b 00 56 00 6f 00 6c 00  |d.d.i.s.k.V.o.l.|
++00000050  75 00 6d 00 65 00 34 00  5c 00 42 00 43 00 44 00  |u.m.e.4.\.B.C.D.|
++00000060  65 00 66 00 69 00 2e 00  63 00 70 00 79 00 00 00  |e.f.i...c.p.y...|
++00000070  14 11 e4 01 8d af e4 11  be 67 b8 88 e3 ba 70 0c  |.........g....p.|  Log of last update or just stack?, ex: GUID seen : 396
++*
++00000090  00 00 00 00 15 11 e4 01  8d af e4 11 be 67 b8 88  |.............g..|
++000000a0  e3 ba 70 0c 72 6d 74 6d  da 67 85 5f 70 4a d0 01  |..p.rmtm.g._pJ..|
++000000b0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+ *
+ 000001f0  00 00 00 00 00 00 00 00  00 00 00 00              |............|    
+-000001fc                                       e6 64 4f 38              |.dO8|  0x384f64e6  CRC XOR of above including this expected result 0x0
++000001fc                                       a0 c6 bd 9f              |....|  0x9fbdc6a0  CRC XOR of above including this expected result 0x0
+ 00000200  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|  
+ *  
+ 00001000  68 62 69 6e                                       |hbin|              0x6e696268  hbin block magic identifier @4096
+ 00001004              00 00 00 00                               |....|          0x00000000  bins distance from first bin 0
+ 00001008                           00 10 00 00                      |....|      0x00001000  this bins size 4096 (a multip of 4k)
+ 0000100c  00 00 00 00 00 00 00 00                           |........|          0x00000000  Unknown 0
+-00001014              8d fe c6 5f 44 9f cc 01                  |..._D...|      0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
++00001014              a5 aa 9f 5f 70 4a d0 01                  |..._pJ..|      0x01d04a705f9faaa5 Timestamp 2015-02-17 05:12:49.483637
+ 0000101c                                       00 00 00 00              |....|  0x00000000  Offset to next bin 0 (same as @x8?)
+ 00001020  a8 ff ff ff                                       |....|              0x-0000058  HBIN Cell size 88 next @ 0x00001078
+ 00001024              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00001026                    2c 00                                 |,.|          0x002c  Flags 44
+ 00001028                           83 6d 7a 87 8b ca c5 01          |.mz.....|  0x01c5ca8b877a6d83 Timestamp 2005-10-06 15:35:07.213964
+-00001030  00 00 00 00                                       |....|              0x00000000  Unknown 0
+-00001034              58 0d 00 00                               |X...|          0x00000d58  Parent NK Offset 3416 ???? @ 0x000002dc
++00001030  02 00 00 00                                       |....|              0x00000002  Unknown 2
++00001034              70 08 00 00                               |p...|          0x00000870  Parent NK Offset 2160 ???? @ 0x000007c4
+ 00001038                           02 00 00 00                      |....|      0x00000002  Number of subkeys (stable) 2
+ 0000103c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+ 00001040  d0 01 00 00                                       |....|              0x000001d0  Offset to subkey-list (stable) 464
+@@ -51,7 +55,7 @@
+ 0000107c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000107e                                             20 00                | .|  0x0020  Flags 32
+ 00001080  8d fe c6 5f 44 9f cc 01                           |..._D...|          0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00001088                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001088                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000108c                                       d0 43 00 00              |.C..|  0x000043d0  Parent NK Offset 17360 ???? @ 0x-0003344
+ 00001090  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00001094              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -90,7 +94,7 @@
+ 0000110c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000110e                                             20 00                | .|  0x0020  Flags 32
+ 00001110  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001118                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001118                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000111c                                       20 00 00 00              | ...|  0x00000020  Parent NK Offset 32 ???? @ 0x000010fc
+ 00001120  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00001124              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -118,7 +122,7 @@
+ 0000117c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000117e                                             20 00                | .|  0x0020  Flags 32
+ 00001180  8d fe c6 5f 44 9f cc 01                           |..._D...|          0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00001188                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001188                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000118c                                       20 00 00 00              | ...|  0x00000020  Parent NK Offset 32 ???? @ 0x0000116c
+ 00001190  09 00 00 00                                       |....|              0x00000009  Number of subkeys (stable) 9
+ 00001194              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -147,7 +151,7 @@
+ 000011ec                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 000011ee                                             20 00                | .|  0x0020  Flags 32
+ 000011f0  8d fe c6 5f 44 9f cc 01                           |..._D...|          0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-000011f8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++000011f8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 000011fc                                       78 01 00 00              |x...|  0x00000178  Parent NK Offset 376 ???? @ 0x00001084
+ 00001200  02 00 00 00                                       |....|              0x00000002  Number of subkeys (stable) 2
+ 00001204              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -171,7 +175,7 @@
+ 00001264              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00001266                    20 00                                 | .|          0x0020  Flags 32
+ 00001268                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001270  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00001270  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00001274              e8 01 00 00                               |....|          0x000001e8  Parent NK Offset 488 ???? @ 0x0000108c
+ 00001278                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000127c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -211,7 +215,7 @@
+ 000012fc                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 000012fe                                             20 00                | .|  0x0020  Flags 32
+ 00001300  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001308                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001308                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000130c                                       e8 01 00 00              |....|  0x000001e8  Parent NK Offset 488 ???? @ 0x00001124
+ 00001310  07 00 00 00                                       |....|              0x00000007  Number of subkeys (stable) 7
+ 00001314              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -249,7 +253,7 @@
+ 0000138c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000138e                                             20 00                | .|  0x0020  Flags 32
+ 00001390  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001398                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001398                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000139c                                       20 20 00 00              |  ..|  0x00002020  Parent NK Offset 8224 ???? @ 0x-0000c84
+ 000013a0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 000013a4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -285,7 +289,7 @@
+ 0000143c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000143e                                             20 00                | .|  0x0020  Flags 32
+ 00001440  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001448                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001448                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000144c                                       f8 02 00 00              |....|  0x000002f8  Parent NK Offset 760 ???? @ 0x00001154
+ 00001450  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00001454              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -328,7 +332,7 @@
+ 000014fc                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 000014fe                                             20 00                | .|  0x0020  Flags 32
+ 00001500  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001508                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001508                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000150c                                       f8 02 00 00              |....|  0x000002f8  Parent NK Offset 760 ???? @ 0x00001214
+ 00001510  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00001514              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -371,7 +375,7 @@
+ 0000159c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000159e                                             20 00                | .|  0x0020  Flags 32
+ 000015a0  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-000015a8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++000015a8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 000015ac                                       f8 02 00 00              |....|  0x000002f8  Parent NK Offset 760 ???? @ 0x000012b4
+ 000015b0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 000015b4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -415,7 +419,7 @@
+ 00001674              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00001676                    20 00                                 | .|          0x0020  Flags 32
+ 00001678                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001680  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00001680  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00001684              f8 02 00 00                               |....|          0x000002f8  Parent NK Offset 760 ???? @ 0x0000138c
+ 00001688                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000168c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -464,7 +468,7 @@
+ 0000178c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000178e                                             20 00                | .|  0x0020  Flags 32
+ 00001790  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001798                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001798                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000179c                                       f8 02 00 00              |....|  0x000002f8  Parent NK Offset 760 ???? @ 0x000014a4
+ 000017a0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 000017a4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -561,7 +565,7 @@
+ 00001bac                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00001bae                                             20 00                | .|  0x0020  Flags 32
+ 00001bb0  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001bb8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001bb8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00001bbc                                       78 01 00 00              |x...|  0x00000178  Parent NK Offset 376 ???? @ 0x00001a44
+ 00001bc0  02 00 00 00                                       |....|              0x00000002  Number of subkeys (stable) 2
+ 00001bc4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -585,7 +589,7 @@
+ 00001c24              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00001c26                    20 00                                 | .|          0x0020  Flags 32
+ 00001c28                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00001c30  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00001c30  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00001c34              d0 43 00 00                               |.C..|          0x000043d0  Parent NK Offset 17360 ???? @ 0x-000279c
+ 00001c38                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 00001c3c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -627,7 +631,7 @@
+ 00001cdc                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00001cde                                             20 00                | .|  0x0020  Flags 32
+ 00001ce0  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00001ce8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001ce8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00001cec                                       28 29 00 00              |()..|  0x00002928  Parent NK Offset 10536 ???? @ 0x-0000c3c
+ 00001cf0  04 00 00 00                                       |....|              0x00000004  Number of subkeys (stable) 4
+ 00001cf4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -671,7 +675,7 @@
+ 00001e04              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00001e06                    20 00                                 | .|          0x0020  Flags 32
+ 00001e08                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00001e10  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00001e10  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00001e14              20 20 00 00                               |  ..|          0x00002020  Parent NK Offset 8224 ???? @ 0x-000020c
+ 00001e18                           01 00 00 00                      |....|      0x00000001  Number of subkeys (stable) 1
+ 00001e1c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -738,7 +742,7 @@
+ 00001f0c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00001f0e                                             20 00                | .|  0x0020  Flags 32
+ 00001f10  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00001f18                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00001f18                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00001f1c                                       c0 21 00 00              |.!..|  0x000021c0  Parent NK Offset 8640 ???? @ 0x-00002a4
+ 00001f20  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00001f24              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -769,7 +773,7 @@
+ 00001f84              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00001f86                    20 00                                 | .|          0x0020  Flags 32
+ 00001f88                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00001f90  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00001f90  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00001f94              78 01 00 00                               |x...|          0x00000178  Parent NK Offset 376 ???? @ 0x00001e1c
+ 00001f98                           02 00 00 00                      |....|      0x00000002  Number of subkeys (stable) 2
+ 00001f9c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -811,7 +815,7 @@
+ 00003024              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00003026                    20 00                                 | .|          0x0020  Flags 32
+ 00003028                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00003030  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00003030  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00003034              78 01 00 00                               |x...|          0x00000178  Parent NK Offset 376 ???? @ 0x00002ebc
+ 00003038                           02 00 00 00                      |....|      0x00000002  Number of subkeys (stable) 2
+ 0000303c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -874,7 +878,7 @@
+ 00003164              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00003166                    20 00                                 | .|          0x0020  Flags 32
+ 00003168                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00003170  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00003170  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00003174              80 0f 00 00                               |....|          0x00000f80  Parent NK Offset 3968 ???? @ 0x000021f4
+ 00003178                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000317c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -896,7 +900,7 @@
+ 000031c4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 000031c6                    20 00                                 | .|          0x0020  Flags 32
+ 000031c8                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-000031d0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++000031d0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 000031d4              80 0f 00 00                               |....|          0x00000f80  Parent NK Offset 3968 ???? @ 0x00002254
+ 000031d8                           01 00 00 00                      |....|      0x00000001  Number of subkeys (stable) 1
+ 000031dc                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -946,7 +950,7 @@
+ 0000327c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000327e                                             20 00                | .|  0x0020  Flags 32
+ 00003280  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00003288                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00003288                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000328c                                       00 0e 00 00              |....|  0x00000e00  Parent NK Offset 3584 ???? @ 0x0000248c
+ 00003290  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00003294              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -987,7 +991,7 @@
+ 00003414              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00003416                    20 00                                 | .|          0x0020  Flags 32
+ 00003418                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00003420  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00003420  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00003424              d0 43 00 00                               |.C..|          0x000043d0  Parent NK Offset 17360 ???? @ 0x-0000fac
+ 00003428                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000342c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1060,7 +1064,7 @@
+ 0000383c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000383e                                             20 00                | .|  0x0020  Flags 32
+ 00003840  8d fe c6 5f 44 9f cc 01                           |..._D...|          0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00003848                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00003848                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000384c                                       d0 43 00 00              |.C..|  0x000043d0  Parent NK Offset 17360 ???? @ 0x-0000b84
+ 00003850  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00003854              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1082,7 +1086,7 @@
+ 00003894              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00003896                    20 00                                 | .|          0x0020  Flags 32
+ 00003898                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-000038a0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++000038a0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 000038a4              f8 02 00 00                               |....|          0x000002f8  Parent NK Offset 760 ???? @ 0x000035ac
+ 000038a8                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 000038ac                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1122,7 +1126,7 @@
+ 0000392c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000392e                                             20 00                | .|  0x0020  Flags 32
+ 00003930  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00003938                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00003938                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000393c                                       78 01 00 00              |x...|  0x00000178  Parent NK Offset 376 ???? @ 0x000037c4
+ 00003940  02 00 00 00                                       |....|              0x00000002  Number of subkeys (stable) 2
+ 00003944              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1146,7 +1150,7 @@
+ 000039a4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 000039a6                    20 00                                 | .|          0x0020  Flags 32
+ 000039a8                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-000039b0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++000039b0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 000039b4              d8 0c 00 00                               |....|          0x00000cd8  Parent NK Offset 3288 ???? @ 0x00002cdc
+ 000039b8                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 000039bc                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1185,7 +1189,7 @@
+ 00003a34              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00003a36                    20 00                                 | .|          0x0020  Flags 32
+ 00003a38                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00003a40  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00003a40  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00003a44              28 29 00 00                               |()..|          0x00002928  Parent NK Offset 10536 ???? @ 0x0000111c
+ 00003a48                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 00003a4c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1207,7 +1211,7 @@
+ 00003a94              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00003a96                    20 00                                 | .|          0x0020  Flags 32
+ 00003a98                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00003aa0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00003aa0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00003aa4              20 30 00 00                               | 0..|          0x00003020  Parent NK Offset 12320 ???? @ 0x00000a84
+ 00003aa8                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 00003aac                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1249,7 +1253,7 @@
+ 00003b2c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00003b2e                                             20 00                | .|  0x0020  Flags 32
+ 00003b30  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00003b38                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00003b38                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00003b3c                                       d8 0c 00 00              |....|  0x00000cd8  Parent NK Offset 3288 ???? @ 0x00002e64
+ 00003b40  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00003b44              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1290,7 +1294,7 @@
+ 00003bdc                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00003bde                                             20 00                | .|  0x0020  Flags 32
+ 00003be0  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00003be8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00003be8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00003bec                                       d8 0c 00 00              |....|  0x00000cd8  Parent NK Offset 3288 ???? @ 0x00002f14
+ 00003bf0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00003bf4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1338,7 +1342,7 @@
+ 00003d04              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00003d06                    20 00                                 | .|          0x0020  Flags 32
+ 00003d08                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00003d10  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00003d10  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00003d14              a8 0b 00 00                               |....|          0x00000ba8  Parent NK Offset 2984 ???? @ 0x0000316c
+ 00003d18                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 00003d1c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1381,7 +1385,7 @@
+ 00003dbc                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00003dbe                                             20 00                | .|  0x0020  Flags 32
+ 00003dc0  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00003dc8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00003dc8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00003dcc                                       d8 0c 00 00              |....|  0x00000cd8  Parent NK Offset 3288 ???? @ 0x000030f4
+ 00003dd0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00003dd4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1441,7 +1445,7 @@
+ 00003f1c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00003f1e                                             20 00                | .|  0x0020  Flags 32
+ 00003f20  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00003f28                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00003f28                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00003f2c                                       f8 02 00 00              |....|  0x000002f8  Parent NK Offset 760 ???? @ 0x00003c34
+ 00003f30  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00003f34              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1509,7 +1513,7 @@
+ 00004024              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00004026                    20 00                                 | .|          0x0020  Flags 32
+ 00004028                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00004030  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00004030  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00004034              a8 0b 00 00                               |....|          0x00000ba8  Parent NK Offset 2984 ???? @ 0x0000348c
+ 00004038                           05 00 00 00                      |....|      0x00000005  Number of subkeys (stable) 5
+ 0000403c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1531,7 +1535,7 @@
+ 0000407c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000407e                                             20 00                | .|  0x0020  Flags 32
+ 00004080  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00004088                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00004088                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000408c                                       78 01 00 00              |x...|  0x00000178  Parent NK Offset 376 ???? @ 0x00003f14
+ 00004090  02 00 00 00                                       |....|              0x00000002  Number of subkeys (stable) 2
+ 00004094              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1580,7 +1584,7 @@
+ 00004154              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00004156                    20 00                                 | .|          0x0020  Flags 32
+ 00004158                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00004160  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00004160  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00004164              78 30 00 00                               |x0..|          0x00003078  Parent NK Offset 12408 ???? @ 0x000010ec
+ 00004168                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000416c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1608,7 +1612,7 @@
+ 000041c4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 000041c6                    20 00                                 | .|          0x0020  Flags 32
+ 000041c8                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-000041d0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++000041d0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 000041d4              78 30 00 00                               |x0..|          0x00003078  Parent NK Offset 12408 ???? @ 0x0000115c
+ 000041d8                           03 00 00 00                      |....|      0x00000003  Number of subkeys (stable) 3
+ 000041dc                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1630,7 +1634,7 @@
+ 0000421c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000421e                                             20 00                | .|  0x0020  Flags 32
+ 00004220  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00004228                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00004228                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000422c                                       c0 31 00 00              |.1..|  0x000031c0  Parent NK Offset 12736 ???? @ 0x0000106c
+ 00004230  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00004234              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1655,7 +1659,7 @@
+ 0000427c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000427e                                             20 00                | .|  0x0020  Flags 32
+ 00004280  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00004288                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00004288                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000428c                                       c0 31 00 00              |.1..|  0x000031c0  Parent NK Offset 12736 ???? @ 0x000010cc
+ 00004290  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00004294              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1694,7 +1698,7 @@
+ 0000430c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000430e                                             20 00                | .|  0x0020  Flags 32
+ 00004310  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00004318                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00004318                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000431c                                       c0 31 00 00              |.1..|  0x000031c0  Parent NK Offset 12736 ???? @ 0x0000115c
+ 00004320  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00004324              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1736,7 +1740,7 @@
+ 000043ac                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 000043ae                                             20 00                | .|  0x0020  Flags 32
+ 000043b0  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-000043b8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++000043b8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 000043bc                                       78 01 00 00              |x...|  0x00000178  Parent NK Offset 376 ???? @ 0x00004244
+ 000043c0  02 00 00 00                                       |....|              0x00000002  Number of subkeys (stable) 2
+ 000043c4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -1760,7 +1764,7 @@
+ 00004424              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00004426                    20 00                                 | .|          0x0020  Flags 32
+ 00004428                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00004430  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00004430  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00004434              a8 33 00 00                               |.3..|          0x000033a8  Parent NK Offset 13224 ???? @ 0x0000108c
+ 00004438                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000443c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1791,7 +1795,7 @@
+ 000044a4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 000044a6                    20 00                                 | .|          0x0020  Flags 32
+ 000044a8                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-000044b0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++000044b0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 000044b4              a8 33 00 00                               |.3..|          0x000033a8  Parent NK Offset 13224 ???? @ 0x0000110c
+ 000044b8                           01 00 00 00                      |....|      0x00000001  Number of subkeys (stable) 1
+ 000044bc                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1820,7 +1824,7 @@
+ 00004514              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00004516                    20 00                                 | .|          0x0020  Flags 32
+ 00004518                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00004520  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00004520  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00004524              a0 34 00 00                               |.4..|          0x000034a0  Parent NK Offset 13472 ???? @ 0x00001084
+ 00004528                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000452c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1891,7 +1895,7 @@
+ 00004974              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00004976                    20 00                                 | .|          0x0020  Flags 32
+ 00004978                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00004980  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00004980  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00004984              a0 3c 00 00                               |.<..|          0x00003ca0  Parent NK Offset 15520 ???? @ 0x00000ce4
+ 00004988                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000498c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1936,7 +1940,7 @@
+ 00004aa4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00004aa6                    20 00                                 | .|          0x0020  Flags 32
+ 00004aa8                           2c 9d c4 5f 44 9f cc 01          |,.._D...|  0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00004ab0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00004ab0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00004ab4              78 01 00 00                               |x...|          0x00000178  Parent NK Offset 376 ???? @ 0x0000493c
+ 00004ab8                           02 00 00 00                      |....|      0x00000002  Number of subkeys (stable) 2
+ 00004abc                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -1974,7 +1978,7 @@
+ 00004bac                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00004bae                                             20 00                | .|  0x0020  Flags 32
+ 00004bb0  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-00004bb8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00004bb8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00004bbc                                       a0 3a 00 00              |.:..|  0x00003aa0  Parent NK Offset 15008 ???? @ 0x0000111c
+ 00004bc0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00004bc4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -2000,7 +2004,7 @@
+ 00004ca4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00004ca6                    20 00                                 | .|          0x0020  Flags 32
+ 00004ca8                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00004cb0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00004cb0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00004cb4              a0 3a 00 00                               |.:..|          0x00003aa0  Parent NK Offset 15008 ???? @ 0x00001214
+ 00004cb8                           02 00 00 00                      |....|      0x00000002  Number of subkeys (stable) 2
+ 00004cbc                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2022,7 +2026,7 @@
+ 00004cfc                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 00004cfe                                             20 00                | .|  0x0020  Flags 32
+ 00004d00  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00004d08                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00004d08                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 00004d0c                                       20 30 00 00              | 0..|  0x00003020  Parent NK Offset 12320 ???? @ 0x00001cec
+ 00004d10  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00004d14              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -2095,7 +2099,7 @@
+ 000050bc                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 000050be                                             20 00                | .|  0x0020  Flags 32
+ 000050c0  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-000050c8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++000050c8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 000050cc                                       a0 3c 00 00              |.<..|  0x00003ca0  Parent NK Offset 15520 ???? @ 0x0000142c
+ 000050d0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 000050d4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -2120,7 +2124,7 @@
+ 00005244              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00005246                    20 00                                 | .|          0x0020  Flags 32
+ 00005248                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00005250  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00005250  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00005254              78 01 00 00                               |x...|          0x00000178  Parent NK Offset 376 ???? @ 0x000050dc
+ 00005258                           02 00 00 00                      |....|      0x00000002  Number of subkeys (stable) 2
+ 0000525c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2144,7 +2148,7 @@
+ 000052bc                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 000052be                                             20 00                | .|  0x0020  Flags 32
+ 000052c0  2c 9d c4 5f 44 9f cc 01                           |,.._D...|          0x01cc9f445fc49d2c Timestamp 2011-11-10 01:02:10.021507
+-000052c8                           00 00 00 00                      |....|      0x00000000  Unknown 0
++000052c8                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 000052cc                                       40 42 00 00              |@B..|  0x00004240  Parent NK Offset 16960 ???? @ 0x0000108c
+ 000052d0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 000052d4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -2175,7 +2179,7 @@
+ 0000533c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000533e                                             20 00                | .|  0x0020  Flags 32
+ 00005340  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00005348                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00005348                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000534c                                       20 30 00 00              | 0..|  0x00003020  Parent NK Offset 12320 ???? @ 0x0000232c
+ 00005350  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00005354              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -2215,7 +2219,7 @@
+ 000053d4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 000053d6                    20 00                                 | .|          0x0020  Flags 32
+ 000053d8                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-000053e0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++000053e0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 000053e4              40 42 00 00                               |@B..|          0x00004240  Parent NK Offset 16960 ???? @ 0x000011a4
+ 000053e8                           0c 00 00 00                      |....|      0x0000000c  Number of subkeys (stable) 12
+ 000053ec                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2237,7 +2241,7 @@
+ 0000542c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000542e                                             20 00                | .|  0x0020  Flags 32
+ 00005430  7c e0 b5 e8 37 9f cc 01                           ||...7...|          0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00005438                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00005438                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000543c                                       20 30 00 00              | 0..|  0x00003020  Parent NK Offset 12320 ???? @ 0x0000241c
+ 00005440  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00005444              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -2276,7 +2280,7 @@
+ 000054c4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 000054c6                    20 00                                 | .|          0x0020  Flags 32
+ 000054c8                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-000054d0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++000054d0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 000054d4              d0 43 00 00                               |.C..|          0x000043d0  Parent NK Offset 17360 ???? @ 0x00001104
+ 000054d8                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 000054dc                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2320,7 +2324,7 @@
+ 000055f4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 000055f6                    20 00                                 | .|          0x0020  Flags 32
+ 000055f8                           7c e0 b5 e8 37 9f cc 01          ||...7...|  0x01cc9f37e8b5e07c Timestamp 2011-11-09 23:32:56.315302
+-00005600  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00005600  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00005604              20 30 00 00                               | 0..|          0x00003020  Parent NK Offset 12320 ???? @ 0x000025e4
+ 00005608                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000560c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2345,7 +2349,7 @@
+ 0000568c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000568e                                             20 00                | .|  0x0020  Flags 32
+ 00005690  8d fe c6 5f 44 9f cc 01                           |..._D...|          0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00005698                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00005698                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000569c                                       d0 43 00 00              |.C..|  0x000043d0  Parent NK Offset 17360 ???? @ 0x000012cc
+ 000056a0  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 000056a4              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -2412,7 +2416,7 @@
+ 000057f4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 000057f6                    20 00                                 | .|          0x0020  Flags 32
+ 000057f8                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00005800  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00005800  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00005804              d0 43 00 00                               |.C..|          0x000043d0  Parent NK Offset 17360 ???? @ 0x00001434
+ 00005808                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 0000580c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2474,7 +2478,7 @@
+ 0000594c                                       6e 6b                    |nk|    cell/record type ['n', 'k'] magic number
+ 0000594e                                             20 00                | .|  0x0020  Flags 32
+ 00005950  8d fe c6 5f 44 9f cc 01                           |..._D...|          0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00005958                           00 00 00 00                      |....|      0x00000000  Unknown 0
++00005958                           02 00 00 00                      |....|      0x00000002  Unknown 2
+ 0000595c                                       d0 43 00 00              |.C..|  0x000043d0  Parent NK Offset 17360 ???? @ 0x0000158c
+ 00005960  00 00 00 00                                       |....|              0x00000000  Number of subkeys (stable) 0
+ 00005964              00 00 00 00                               |....|          0x00000000  Number of subkeys (volatile) 0
+@@ -2543,7 +2547,7 @@
+ 00005c34              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00005c36                    20 00                                 | .|          0x0020  Flags 32
+ 00005c38                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00005c40  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00005c40  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00005c44              d0 43 00 00                               |.C..|          0x000043d0  Parent NK Offset 17360 ???? @ 0x00001874
+ 00005c48                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 00005c4c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2585,7 +2589,7 @@
+ 00005d64              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00005d66                    20 00                                 | .|          0x0020  Flags 32
+ 00005d68                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00005d70  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00005d70  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00005d74              d0 43 00 00                               |.C..|          0x000043d0  Parent NK Offset 17360 ???? @ 0x000019a4
+ 00005d78                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 00005d7c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2620,7 +2624,7 @@
+ 00005e74              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00005e76                    20 00                                 | .|          0x0020  Flags 32
+ 00005e78                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00005e80  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00005e80  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00005e84              d0 43 00 00                               |.C..|          0x000043d0  Parent NK Offset 17360 ???? @ 0x00001ab4
+ 00005e88                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 00005e8c                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
+@@ -2664,7 +2668,7 @@
+ 00005fa4              6e 6b                                     |nk|            cell/record type ['n', 'k'] magic number
+ 00005fa6                    20 00                                 | .|          0x0020  Flags 32
+ 00005fa8                           8d fe c6 5f 44 9f cc 01          |..._D...|  0x01cc9f445fc6fe8d Timestamp 2011-11-10 01:02:10.037107
+-00005fb0  00 00 00 00                                       |....|              0x00000000  Unknown 0
++00005fb0  02 00 00 00                                       |....|              0x00000002  Unknown 2
+ 00005fb4              d0 43 00 00                               |.C..|          0x000043d0  Parent NK Offset 17360 ???? @ 0x00001be4
+ 00005fb8                           00 00 00 00                      |....|      0x00000000  Number of subkeys (stable) 0
+ 00005fbc                                       00 00 00 00              |....|  0x00000000  Number of subkeys (volatile) 0
